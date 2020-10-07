@@ -24,12 +24,10 @@ RDEPEND="${DEPEND}
 	pantheon-extra/dpms-helper
 	pantheon-extra/pantheon-agent-polkit
 	x11-misc/plank
-	x11-wm/gala
-"
+	=x11-wm/gala-9999"
 
 PDEPEND="
-	pantheon-base/pantheon-settings
-"
+	pantheon-base/pantheon-settings"
 
 S="${WORKDIR}/session-settings-${PV}"
 

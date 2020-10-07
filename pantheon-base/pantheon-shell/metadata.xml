@@ -2,6 +2,9 @@
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
 	<maintainer type="person">
+		<name>Remi A. Solås</name>
+	</maintainer>
+	<maintainer type="person">
 		<name>Pim Vullers</name>
 		<email>elementary@vullersmail.nl</email>
 	</maintainer>
