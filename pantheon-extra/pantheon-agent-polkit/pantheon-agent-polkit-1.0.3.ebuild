@@ -19,6 +19,7 @@ IUSE="nls"
 DEPEND="
 	$(vala_depend)
 	nls? ( sys-devel/gettext )
+	>=dev-libs/granite-5.4.0
 "
 RDEPEND="${DEPEND}
 	dev-libs/glib:2
