@@ -3,11 +3,11 @@
 
 EAPI=7
 
-PYTHON_COMPAT=( python{2_6,2_7} )
+PYTHON_COMPAT=( python3_{5,6,7,8} )
 VALA_MIN_API_VERSION=0.26
 VALA_USE_DEPEND=vapigen
 
-inherit python-r1 vala
+inherit python-r1 vala autotools
 
 DESCRIPTION="BAMF Application Matching Framework"
 HOMEPAGE="https://launchpad.net/bamf"
@@ -32,24 +32,28 @@ RDEPEND="
 DEPEND="${RDEPEND}
 	$(vala_depend)
 	${PYTHON_DEPS}
-	dev-libs/libxml2[python]
-	dev-libs/libxslt[python]
+	dev-libs/libxml2[${PYTHON_USEDEP}]
 	gtk-doc? ( dev-util/gtk-doc )
 	introspection? ( dev-libs/gobject-introspection )
 	virtual/pkgconfig
 "
 
+AUTOTOOLS_AUTORECONF=yes
+
 src_prepare() {
-	sed -i 's/-Werror//' configure
+	sed -i 's/-Werror//' configure.ac
+	sed -i 's/tests//' Makefile.am
+	eapply "${FILESDIR}/${P}-disable-gtester2xunit-checks.patch"
+	eautoreconf
 	vala_src_prepare
 	default
 }
 
 src_configure() {
 	python_setup
-
 	VALA_API_GEN="${VAPIGEN}" \
 	econf \
+		--disable-headless-tests \
 		--disable-gtktest \
 		$(use_enable gtk-doc) \
 		$(use_enable introspection)
