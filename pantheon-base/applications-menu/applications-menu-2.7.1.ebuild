@@ -37,6 +37,7 @@ RDEPEND="${DEPEND}
 "
 
 src_prepare() {
+	sed -iE 's/(zeitgeist)-2.0/\1/' meson.build
 	eapply_user
 	vala_src_prepare
 }
