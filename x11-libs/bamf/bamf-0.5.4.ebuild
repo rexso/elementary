@@ -42,6 +42,8 @@ AUTOTOOLS_AUTORECONF=yes
 
 src_prepare() {
 	sed -i 's/-Werror//' configure.ac
+	sed -i 's/GNOME_COMMON_INIT//' configure.ac
+	sed -i 's/GNOME_COMPILE_WARNINGS(.\+)//' configure.ac
 	sed -i 's/tests//' Makefile.am
 	eapply "${FILESDIR}/${P}-disable-gtester2xunit-checks.patch"
 	eautoreconf
